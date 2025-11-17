@@ -4,9 +4,12 @@ const cors = require('cors');
 const app = express();
 app.use(cors());
 
-// ===================== DATA V1 =====================
-const feedV5 = { 
-  "user": { "name": "Sidra", "notifications": 3 },
+// ===================== FEED V5 =====================
+const feedV5 = {
+  "user": {
+    "name": "Sidra",
+    "notifications": 3
+  },
   "continueWatching": [
     {
       "id": "course_uiux_essentials",
@@ -26,15 +29,16 @@ const feedV5 = {
     }
   ],
   "categories": [
-    {"id": "cat_graphic_design", "name": "Graphic Design"},
-    {"id": "cat_user_interface", "name": "User Interface"},
-    {"id": "cat_user_experience", "name": "User Experience"},
-    {"id": "cat_animation", "name": "Animation"},
-    {"id": "cat_game_design", "name": "Game Design"}
+    { "id": "cat_graphic_design", "name": "Graphic Design" },
+    { "id": "cat_user_interface", "name": "User Interface" },
+    { "id": "cat_user_experience", "name": "User Experience" },
+    { "id": "cat_animation", "name": "Animation" },
+    { "id": "cat_game_design", "name": "Game Design" }
   ]
 };
 
-// ===================== DATA V5 DETAILS =====================
+
+// ===================== FEED DETAILS V5 =====================
 const feedDetailsV5 = {
   "doctor": {
     "id": 201,
@@ -57,37 +61,39 @@ const feedDetailsV5 = {
       "location": "Bashundhara, Dhaka",
       "wait_time": "20 mins or less",
       "more_clinics": [
-        {"name": "Square Hospital", "location": "Panthapath, Dhaka"},
-        {"name": "United Hospital", "location": "Gulshan, Dhaka"}
+        { "name": "Square Hospital", "location": "Panthapath, Dhaka" },
+        { "name": "United Hospital", "location": "Gulshan, Dhaka" }
       ]
     },
     "available_days": [
-      {"day": "Today", "slots": []},
-      {"day": "Tomorrow", "slots": ["06:00 - 06:30", "06:30 - 07:00"]},
-      {"day": "17 Oct", "slots": ["07:00 - 07:30", "07:30 - 08:00"]}
+      { "day": "Today", "slots": [] },
+      { "day": "Tomorrow", "slots": ["06:00 - 06:30", "06:30 - 07:00"] },
+      { "day": "17 Oct", "slots": ["07:00 - 07:30", "07:30 - 08:00"] }
     ]
   },
   "timing": [
-    {"day": "Monday", "time": "09:00 AM - 05:00 PM"},
-    {"day": "Tuesday", "time": "Closed"},
-    {"day": "Wednesday", "time": "09:00 AM - 05:00 PM"},
-    {"day": "Thursday", "time": "09:00 AM - 05:00 PM"},
-    {"day": "Friday", "time": "10:00 AM - 02:00 PM"},
-    {"day": "Saturday", "time": "09:00 AM - 01:00 PM"},
-    {"day": "Sunday", "time": "Closed"}
+    { "day": "Monday", "time": "09:00 AM - 05:00 PM" },
+    { "day": "Tuesday", "time": "Closed" },
+    { "day": "Wednesday", "time": "09:00 AM - 05:00 PM" },
+    { "day": "Thursday", "time": "09:00 AM - 05:00 PM" },
+    { "day": "Friday", "time": "10:00 AM - 02:00 PM" },
+    { "day": "Saturday", "time": "09:00 AM - 01:00 PM" },
+    { "day": "Sunday", "time": "Closed" }
   ],
   "locations": [
-    {"area": "Shahbag", "hospital": "BSSMU", "full_address": "Shahbagh, Dhaka"},
-    {"area": "Bashundhara", "hospital": "Evercare", "full_address": "Plot 81, Block E"},
-    {"area": "Banani", "hospital": "Popular Diagnostic Centre", "full_address": "House 11"}
+    { "area": "Shahbag", "hospital": "BSSMU", "full_address": "Shahbagh, Dhaka" },
+    { "area": "Bashundhara", "hospital": "Evercare", "full_address": "Plot 81, Block E" },
+    { "area": "Banani", "hospital": "Popular Diagnostic Centre", "full_address": "House 11" }
   ],
   "tabs": ["Info", "History", "Review"]
 };
 
-// ROUTES
+
+// ===================== ROUTES =====================
 app.get('/v5/feed', (req, res) => res.json(feedV5));
 app.get('/v5/feed/details', (req, res) => res.json(feedDetailsV5));
 
-// SERVER START
+
+// ===================== SERVER START =====================
 const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => console.log(`API running on port ${PORT}`));
