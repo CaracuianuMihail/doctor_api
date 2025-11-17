@@ -85,7 +85,7 @@ const feedDetailsV5 = {
 };
 
 // ROUTES
-app.get('/v5/feed', (req, res) => res.json(feedV1));
+app.get('/v5/feed', (req, res) => res.json(feedV5));
 app.get('/v5/feed/details', (req, res) => res.json(feedDetailsV5));
 
 // SERVER START
