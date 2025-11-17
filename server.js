@@ -2,7 +2,15 @@ const express = require('express');
 const cors = require('cors');
 
 const app = express();
-app.use(cors());
+
+// ===================== ENABLE CORS =====================
+app.use(cors({
+  origin: "*", // permite acces din ORICE aplicație: Android, iOS, Web, Postman
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
+app.use(express.json());
 
 // ===================== DATA V1 =====================
 const feedV1 = {
