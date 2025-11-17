@@ -2,22 +2,11 @@ const express = require('express');
 const cors = require('cors');
 
 const app = express();
-
-// ===================== ENABLE CORS =====================
-app.use(cors({
-  origin: "*", // permite acces din ORICE aplicație: Android, iOS, Web, Postman
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"]
-}));
-
-app.use(express.json());
+app.use(cors());
 
 // ===================== DATA V1 =====================
-const feedV1 = {
-  "user": {
-    "name": "Sidra",
-    "notifications": 3
-  },
+const feedV1 = { 
+  "user": { "name": "Sidra", "notifications": 3 },
   "continueWatching": [
     {
       "id": "course_uiux_essentials",
@@ -42,55 +31,8 @@ const feedV1 = {
     {"id": "cat_user_experience", "name": "User Experience"},
     {"id": "cat_animation", "name": "Animation"},
     {"id": "cat_game_design", "name": "Game Design"}
-  ],
-  "suggestions": [
-    {
-      "id": "course_typography_layout",
-      "title": "Typography and Layout Design",
-      "institute": "Visual Communication College",
-      "rating": 4.7,
-      "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=60"
-    },
-    {
-      "id": "course_branding_identity",
-      "title": "Branding and Identity Design",
-      "institute": "Innovation and Design School",
-      "rating": 4.4,
-      "image": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=60"
-    },
-    {
-      "id": "course_web_design_fundamentals",
-      "title": "Web Design Fundamentals",
-      "institute": "Web Development Lab",
-      "rating": 4.9,
-      "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=60"
-    }
-  ],
-  "topCourses": [
-    {
-      "id": "course_motion_graphics",
-      "title": "Animation and Motion Graphics",
-      "institute": "Animation Institute of Digital Arts",
-      "rating": 4.7,
-      "image": "https://images.unsplash.com/photo-1587620962725-abab7fe55159?auto=format&fit=crop&w=800&q=60"
-    },
-    {
-      "id": "course_game_design_dev",
-      "title": "Game Design and Development",
-      "institute": "Game Development Academy",
-      "rating": 4.4,
-      "image": "https://images.unsplash.com/photo-1590608897129-79da98d159e9?auto=format&fit=crop&w=800&q=60"
-    },
-    {
-      "id": "course_product_design_innovation",
-      "title": "Product Design and Innovation",
-      "institute": "Product Design Institute",
-      "rating": 4.9,
-      "image": "https://images.unsplash.com/photo-1605379399642-870262d3d051?auto=format&fit=crop&w=800&q=60"
-    }
   ]
 };
-
 
 // ===================== DATA V5 DETAILS =====================
 const feedDetailsV5 = {
@@ -135,38 +77,17 @@ const feedDetailsV5 = {
     {"day": "Sunday", "time": "Closed"}
   ],
   "locations": [
-    {
-      "area": "Shahbag",
-      "hospital": "BSSMU - Bangabandhu Sheikh Mujib Medical University",
-      "full_address": "Shahbagh, Dhaka"
-    },
-    {
-      "area": "Bashundhara",
-      "hospital": "Evercare Hospital Ltd.",
-      "full_address": "Plot 81, Block E, Bashundhara R/A, Dhaka"
-    },
-    {
-      "area": "Banani",
-      "hospital": "Popular Diagnostic Centre",
-      "full_address": "House 11, Road 2, Banani, Dhaka"
-    }
+    {"area": "Shahbag", "hospital": "BSSMU", "full_address": "Shahbagh, Dhaka"},
+    {"area": "Bashundhara", "hospital": "Evercare", "full_address": "Plot 81, Block E"},
+    {"area": "Banani", "hospital": "Popular Diagnostic Centre", "full_address": "House 11"}
   ],
   "tabs": ["Info", "History", "Review"]
 };
 
+// ROUTES
+app.get('/v5/feed', (req, res) => res.json(feedV1));
+app.get('/v5/feed/details', (req, res) => res.json(feedDetailsV5));
 
-// ===================== ROUTES =====================
-app.get('/v5/feed', (req, res) => {
-  res.json(feedV1);
-});
-
-app.get('/v5/feed/details', (req, res) => {
-  res.json(feedDetailsV5);
-});
-
-
-// ===================== SERVER START =====================
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`API running on port ${PORT}`);
-});
+// SERVER START
+const PORT = process.env.PORT || 10000;
+app.listen(PORT, () => console.log(`API running on port ${PORT}`));
