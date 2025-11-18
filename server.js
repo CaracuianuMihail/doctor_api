@@ -1,10 +1,12 @@
+// server.js
 const express = require('express');
 const cors = require('cors');
 
 const app = express();
 app.use(cors());
+app.use(express.json());
 
-// ===================== FEED V5 =====================
+// =============== /v5/feed ==================
 const feedV5 = {
   "user": {
     "name": "Sidra",
@@ -37,8 +39,7 @@ const feedV5 = {
   ]
 };
 
-
-// ===================== FEED DETAILS V5 =====================
+// =============== /v5/feed/details ==================
 const feedDetailsV5 = {
   "doctor": {
     "id": 201,
@@ -81,19 +82,40 @@ const feedDetailsV5 = {
     { "day": "Sunday", "time": "Closed" }
   ],
   "locations": [
-    { "area": "Shahbag", "hospital": "BSSMU", "full_address": "Shahbagh, Dhaka" },
-    { "area": "Bashundhara", "hospital": "Evercare", "full_address": "Plot 81, Block E" },
-    { "area": "Banani", "hospital": "Popular Diagnostic Centre", "full_address": "House 11" }
+    {
+      "area": "Shahbag",
+      "hospital": "BSSMU",
+      "full_address": "Shahbagh, Dhaka"
+    },
+    {
+      "area": "Bashundhara",
+      "hospital": "Evercare",
+      "full_address": "Plot 81, Block E"
+    },
+    {
+      "area": "Banani",
+      "hospital": "Popular Diagnostic Centre",
+      "full_address": "House 11"
+    }
   ],
   "tabs": ["Info", "History", "Review"]
 };
 
+// =============== ROUTES ==================
+app.get('/', (req, res) => {
+  res.send('Doctor API running (v5)');
+});
 
-// ===================== ROUTES =====================
-app.get('/v5/feed', (req, res) => res.json(feedV5));
-app.get('/v5/feed/details', (req, res) => res.json(feedDetailsV5));
+app.get('/v5/feed', (req, res) => {
+  res.json(feedV5);
+});
 
+app.get('/v5/feed/details', (req, res) => {
+  res.json(feedDetailsV5);
+});
 
-// ===================== SERVER START =====================
+// =============== START SERVER ==================
 const PORT = process.env.PORT || 10000;
-app.listen(PORT, () => console.log(`API running on port ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`API running on port ${PORT}`);
+});
